@@ -1,0 +1,24 @@
+client
+tls-client
+dev tap
+proto udp
+
+remote <%= scope['kcsara::vpn_client::host'] %> <%= scope['kcsara::vpn_client::port'] %> # Change to your router's External IP
+resolv-retry infinite
+nobind
+
+persist-tun
+persist-key
+
+ca <%= scope['settings::ssldir'] %>/certs/ca.pem
+cert <%= scope['settings::ssldir'] %>/certs/<%= @fqdn %>.pem
+key <%= scope['settings::ssldir'] %>/private_keys/<%= @fqdn %>.pem
+
+#dh database-kcsara-dh1024.pem
+#pkcs12 Jimmy.p12    # Remove comment if you use PKCS #12 format and comment out 4 lines above
+
+comp-lzo
+verb 3
+
+fragment 1300
+mssfix

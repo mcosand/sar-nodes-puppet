@@ -1,0 +1,10 @@
+[Unit]
+Description=OpenVPN client
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/openvpn /etc/openvpn/client.conf
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

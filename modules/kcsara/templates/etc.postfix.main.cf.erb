@@ -1,0 +1,28 @@
+# Basic Null ( send only ) Postfix
+
+smtpd_banner = KCSARA Node <%= @fqdn %>
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+myhostname = <%= @fqdn %>
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+mydestination = <%= @hostname %>, <%= @fqdn %>, localhost.localdomain, localhost
+relayhost = [<%= server %>]:587
+inet_protocols = ipv4
+mynetworks = 127.0.0.0/8
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = loopback-only
+sender_canonical_maps = hash:/etc/postfix/canonical
+header_checks = regexp:/etc/postfix/header_checks
+# TLS
+
+smtp_use_tls=yes
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/smtp_auth
+tls_random_source=dev:/dev/urandom
+smtp_sasl_security_options=noanonymous
+smtp_sasl_tls_security_options=noanonymous
+smtp_tls_security_level=may
+
