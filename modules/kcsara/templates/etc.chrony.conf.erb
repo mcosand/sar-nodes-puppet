@@ -1,0 +1,12 @@
+server 0.us.pool.ntp.org iburst
+server 1.us.pool.ntp.org iburst
+server 2.us.pool.ntp.org iburst
+server 3.us.pool.ntp.org iburst
+
+driftfile /var/lib/chrony/drift
+
+makestep 100 10
+
+<% if @gps_device %>
+refclock SHM 0 poll 3 offset 0.0 delay 0.0 precision 0.3 refid GPS
+<% end %>
