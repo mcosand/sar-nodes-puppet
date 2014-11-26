@@ -1,0 +1,4 @@
+[Service]
+ExecStart=
+ExecStart=/usr/bin/gpsd -N -n <%= @gps_device %>
+Restart=always

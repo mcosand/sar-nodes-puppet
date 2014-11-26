@@ -1,0 +1,9 @@
+[Unit]
+Description=GPS (Global Positioning System) Logger
+
+[Service]
+ExecStart=/usr/bin/ruby /root/gps-logger.rb /root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

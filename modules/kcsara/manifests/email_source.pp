@@ -18,6 +18,7 @@ class kcsara::email_source ($email = '', $password = '', $server = '', $admin_ad
   }
 
   exec {'/usr/bin/newaliases':
+    command => '/usr/bin/newaliases && chown postfix /etc/aliases.db',
     subscribe => File['/etc/aliases'],
     refreshonly => true,
     notify => Service['postfix'],
